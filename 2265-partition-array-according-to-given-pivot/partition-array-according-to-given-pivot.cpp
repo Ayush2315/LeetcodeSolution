@@ -1,9 +1,7 @@
 class Solution {
 public:
     vector<int> pivotArray(vector<int>& nums, int pivot) {
-        list<int> less;
-        list<int> equal;
-        list<int> greater;
+        vector<int> less, equal, greater;
 
         for (int x : nums) {
             if (x < pivot)
@@ -14,12 +12,16 @@ public:
                 greater.push_back(x);
         }
 
-        // Combine all three lists
-        less.splice(less.end(), equal);
-        less.splice(less.end(), greater);
+        vector<int> ans;
 
-        // Convert list to vector
-        vector<int> ans(less.begin(), less.end());
+        for (int x : less)
+            ans.push_back(x);
+
+        for (int x : equal)
+            ans.push_back(x);
+
+        for (int x : greater)
+            ans.push_back(x);
 
         return ans;
     }
